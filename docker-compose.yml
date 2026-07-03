@@ -1,0 +1,16 @@
+services:
+  openwebui:
+    image: ghcr.io/simplylimitless/homelab-openweb-ui:latest
+    # build: .
+    restart: unless-stopped
+    ports:
+      - "3000:8080"
+    volumes:
+      - oww-data:/app/backend/data
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - HF_HUB_OFFLINE=${HF_HUB_OFFLINE:-0}
+
+volumes:
+  oww-data:
