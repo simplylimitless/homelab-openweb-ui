@@ -55,9 +55,13 @@ docker run -p 3000:8080 \
   ghcr.io/simplylimitless/homelab-openweb-ui:latest
 ```
 
+## Supported architectures
+
+Images are built for both `linux/amd64` and `linux/arm64`, so they run on standard x86_64 servers as well as ARM-based hardware (Raspberry Pi 4/5, Apple Silicon via Docker Desktop, AWS Graviton, etc.). Docker automatically pulls the correct variant for your host — no extra configuration needed.
+
 ## CI/CD
 
-Pushing to `main` triggers an automatic build (see [`.github/workflows/docker.yml`](.github/workflows/docker.yml)). Each push is tagged with both `latest` and a numeric build ID for rollback:
+Pushing to `main` triggers an automatic multi-arch build (see [`.github/workflows/docker.yml`](.github/workflows/docker.yml)) using Docker Buildx and QEMU to produce both `amd64` and `arm64` images under a single manifest. Each push is tagged with both `latest` and a numeric build ID for rollback:
 
 ```bash
 docker pull ghcr.io/simplylimitless/homelab-openweb-ui:3
