@@ -1,6 +1,6 @@
 services:
   openwebui:
-    image: ghcr.io/simplylimitless/homelab-openweb-ui:latest
+    image: ghcr.io/simplylimitless/openweb-ui:latest
     # build: .
     restart: unless-stopped
     ports:

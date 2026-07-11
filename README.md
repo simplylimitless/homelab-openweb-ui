@@ -1,4 +1,4 @@
-# homelab-openweb-ui
+# openweb-ui
 
 Open WebUI — a self-hosted conversational AI interface. Docker-based, using the official `open-webui:main` image.
 
@@ -46,13 +46,13 @@ See the [Open WebUI repo](https://github.com/open-webui/open-webui) for the full
 If you prefer not to use Compose:
 
 ```bash
-docker pull ghcr.io/simplylimitless/homelab-openweb-ui:latest
+docker pull ghcr.io/simplylimitless/openweb-ui:latest
 docker run -p 3000:8080 \
   --name openwebui \
   -v $(pwd)/data:/app/backend/data \
   -e OPENAI_API_KEY=sk-your-key \
   -e OLLAMA_BASE_URL=http://your-ollama-host:11434 \
-  ghcr.io/simplylimitless/homelab-openweb-ui:latest
+  ghcr.io/simplylimitless/openweb-ui:latest
 ```
 
 ## Supported architectures
@@ -64,7 +64,7 @@ Images are built for both `linux/amd64` and `linux/arm64`, so they run on standa
 Pushing to `main` triggers an automatic multi-arch build (see [`.github/workflows/docker.yml`](.github/workflows/docker.yml)) using Docker Buildx and QEMU to produce both `amd64` and `arm64` images under a single manifest. Each push is tagged with both `latest` and a numeric build ID for rollback:
 
 ```bash
-docker pull ghcr.io/simplylimitless/homelab-openweb-ui:3
+docker pull ghcr.io/simplylimitless/openweb-ui:3
 ```
 
 **GHCR write permission:** The workflow uses a PAT stored in the repository secret `GHCR_PAT` to push to GitHub Container Registry. Create one at https://github.com/settings/tokens (classic tokens, not fine-grained — that scope isn't available there) with the **`packages`** scope ticked, then add it as a repo secret named `GHCR_PAT`. The automatic `GITHUB_TOKEN` doesn't grant GHCR package write permissions, so this PAT is required.
